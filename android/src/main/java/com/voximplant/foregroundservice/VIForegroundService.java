@@ -34,7 +34,7 @@ public class VIForegroundService extends Service {
                     }
                 }
             } else if (action.equals(Constants.ACTION_FOREGROUND_SERVICE_STOP)) {
-                stopSelf();
+                stopForeground(true);
             }
         }
         return START_NOT_STICKY;

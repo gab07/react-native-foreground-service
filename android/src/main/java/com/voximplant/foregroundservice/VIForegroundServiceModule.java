@@ -91,8 +91,8 @@ public class VIForegroundServiceModule extends ReactContextBaseJavaModule {
     public void stopService(Promise promise) {
         Intent intent = new Intent(getReactApplicationContext(), VIForegroundService.class);
         intent.setAction(Constants.ACTION_FOREGROUND_SERVICE_STOP);
-        boolean stopped = getReactApplicationContext().stopService(intent);
-        if (stopped) {
+        ComponentName componentName = getReactApplicationContext().startService(intent);
+        if (componentName != null) {
             promise.resolve(null);
         } else {
             promise.reject(ERROR_SERVICE_ERROR, "VIForegroundService: Foreground service failed to stop");
