@@ -96,7 +96,9 @@ class NotificationHelper {
             notificationBuilder = new Notification.Builder(context);
         }
 
-        int priorityInt = notificationConfig.containsKey("priority") ? notificationConfig.getInt("priority"): Notification.PRIORITY_HIGH;
+        int priorityInt = notificationConfig.containsKey("priority")
+                ? (int) notificationConfig.getDouble("priority")
+                : Notification.PRIORITY_HIGH;
 
         int priority;
         switch (priorityInt) {
