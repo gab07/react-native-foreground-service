@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Process;
 
 import static com.voximplant.foregroundservice.Constants.NOTIFICATION_CONFIG;
 
@@ -35,9 +36,22 @@ public class VIForegroundService extends Service {
                 }
             } else if (action.equals(Constants.ACTION_FOREGROUND_SERVICE_STOP)) {
                 stopForeground(true);
+                stopSelf();
             }
         }
-        return START_NOT_STICKY;
 
+        return START_NOT_STICKY;
     }
+
+/*
+  Uncomment this if you want to kill the process after this service is destroyed
+  WARNING: doing this will kill the app too.
+ */
+
+//    @Override
+//    public void onDestroy() {
+//        Process.killProcess(Process.myPid());
+//        super.onDestroy();
+//    }
+
 }
